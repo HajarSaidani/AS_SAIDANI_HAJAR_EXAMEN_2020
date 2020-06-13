@@ -130,4 +130,16 @@ public class LoginController extends ActionSupport {
 		listeComptesOk = true;
 		return ActionSupport.SUCCESS;
 	}
+	
+	/*
+	public double crediter(String numeroClient, String numCompte, double montant) {
+		setCompte
+		manager.crediter(numeroClient, numCompte, montant);
+		return compte.solde;
+		
+	}
+	*/
+	
+ 
+	
 }

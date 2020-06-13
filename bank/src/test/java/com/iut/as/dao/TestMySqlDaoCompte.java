@@ -27,6 +27,8 @@ public class TestMySqlDaoCompte {
 	private IDaoCompte dao;
 
 	private static final String TEST_NUMERO_COMPTE = "AB7328887341";
+	
+	private static final Double MONTANT_TEST = 1d;
 
 	private static final String NUMERO_COMPTE_EXISTE_PAS = "unnumerocomptequiexistepas";
 
@@ -60,4 +62,22 @@ public class TestMySqlDaoCompte {
 		assertEquals(TEST_NUMERO_COMPTE, compte.getNumCompte());
 		assertTrue(compte.decouvertAutorise());
 	}
+	
+	@Test
+	public void testUpdateDebitCredit() {
+		Compte compte = dao.readByKey(TEST_NUMERO_COMPTE);
+		Double soldeInitial = compte.getSolde();
+		compte.debiter(MONTANT_TEST);
+		assertTrue(dao.update(compte));
+		// Relecture du compte :
+		compte = dao.readByKey(TEST_NUMERO_COMPTE);
+		assertEquals(soldeInitial - MONTANT_TEST, compte.getSolde(), 0);
+		compte.crediter(MONTANT_TEST);
+		assertTrue(dao.update(compte));
+		compte = dao.readByKey(TEST_NUMERO_COMPTE);
+		assertEquals(soldeInitial, compte.getSolde(), 0);
+	}
+	
+	
+	
 }

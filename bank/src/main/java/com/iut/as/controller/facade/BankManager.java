@@ -75,4 +75,18 @@ public class BankManager {
 			logger.info("le client possède : " + client.getComptes().size() + " compte(s)");
 		}
 	}
+	
+	
+	//Ajout examen
+	public double crediter(String numeroClient, String numCompte, double montant) {
+		logger.info("======= Appel DB");
+		Client client= dao.getDaoClient().readByKey(numeroClient);;
+		Compte compte = dao.getDaoCompte().readByKey(numCompte);
+		compte.crediter(montant);
+		return compte.getSolde();
+	}
+	
+	
+	
+	
 }

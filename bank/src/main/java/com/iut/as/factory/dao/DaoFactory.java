@@ -33,4 +33,5 @@ public abstract class DaoFactory {
 
 	// Le lien vers la table 'Client' :
 	public abstract IDaoClient getDaoClient();
+	
 }

@@ -11,14 +11,22 @@
 	<s:if test="listeComptesOk">
 		<br> Voici les comptes du client :
 	<br>
+	<s:form name="debitCredit" action="debitCredit" method="POST">
 		<table border="1px solid black">
 			<s:iterator value="comptesClient">
 				<tr>
+					<s:hidden name="numeroCompte" value="%{numCompte}" />
 					<td><s:text name="numCompte"></s:text></td>
 					<td><s:text name="solde"></s:text></td>
+					
+					<s:hidden name="montant" value="%{montant}"/>
+					<td><input type="text" placeholder="Entrez un montant" name = "entrerMontant"/></td>
+					<td><input type="submit" name="debiter" value="Débiter"/></td>
+					<td><input type="submit" name="crediter" value="Créditer"/></td>
 				</tr>
 			</s:iterator>
 		</table>
+		</s:form>
 	</s:if>
 	<s:else>
 	BIENVENUE DANS LA BANQUE
@@ -39,6 +47,12 @@
 			<!--<s:hidden name="client" value = "%{clientConnecte}"/>-->
 			<s:submit name="Comptes" value="Voir la liste des comptes" />
 		</s:form>
+		
+		
+
+		
+		
+		
 	</s:else>
 </body>
 </html>
